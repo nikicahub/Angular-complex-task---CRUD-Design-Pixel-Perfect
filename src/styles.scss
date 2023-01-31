@@ -1,1 +1,641 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    background-color: #f9f9f9;
+}
+
+.navbar {
+    background-color: #fff;
+}
+
+//Common logic
+.pl {
+    padding-left: 0 !important;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.ms-n5 {
+    margin-left: -44px;
+}
+
+.green {
+    color: #73cc88 !important;
+}
+
+
+
+//Tab Switcher buttons contacts - favorites
+.pillContact {
+    background-color: #fff;
+    border: 1px solid black;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.pillFavorite {
+    padding-left: 50px;
+    border-left: none !important;
+    background-color: #f0f0f0;
+    margin-left: -30px;
+    opacity: 0.7;
+    padding-right: 30px;
+}
+
+//Navigation pills switch 
+.nav-pills .nav-item a {
+    background-color: #fff;
+    border: 1px solid #64adc354;
+    color: #0a6583;
+    font-weight: 700;
+    opacity: 0.5;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: #fff;
+    color: #186f8b;
+    font-weight: 700;
+    opacity: 1;
+    z-index: 5;
+    position: relative;
+}
+
+
+//popover in table
+@media screen and (max-width: 980px) {
+    .popover-body .btn {
+        font-size: 11px;
+    }
+}
+
+.popover-body {
+    padding: 0 !important;
+    // border: 1px solid #7e7e7e;
+    text-align: left;
+
+    .btn {
+        color: #5b5b5b;
+        font-weight: 600;
+        text-align: left;
+
+        &:hover {
+            background-color: #6ec9e560 !important;
+            color: #64adc3;
+
+            fa-icon {
+                color: #64adc3;
+            }
+        }
+    }
+
+    fa-icon {
+        font-size: 15px;
+        color: #7e7e7e;
+        margin-right: 10px;
+    }
+}
+
+.table> :not(caption)>*>* {
+    border-bottom-width: 0px !important;
+}
+
+table tr {
+    border: 1px solid rgba(222, 234, 238, 0.958);
+    margin-bottom: 10px;
+    display: table;
+    width: 100%;
+    background-color: #fff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    &:hover {
+        background-color: #f4fdff;
+    }
+}
+
+table td {
+    vertical-align: middle !important;
+}
+
+#table-headings {
+    border: none !important;
+    background-color: transparent;
+    font-weight: 300 !important;
+    color: #8e8e8e;
+    position: relative;
+    cursor: pointer;
+
+    fa-icon {
+        font-size: 14px !important;
+        color: #5b5b5b !important;
+        top: -10%;
+        position: relative;
+
+        &:hover {
+            font-size: 11px !important;
+            color: #5b5b5b !important;
+        }
+    }
+}
+
+.table {
+    font-size: 14px;
+
+    .table-row td:nth-child(3),
+    .table-row td:nth-child(4) {
+        color: #8e8e8e;
+        font-weight: 600;
+    }
+
+    .table-row td:nth-child(5),
+    .table-row td:nth-child(6),
+    .table-row td:nth-child(7) {
+        color: #64adc3;
+        font-weight: 600;
+    }
+
+    .table-row td:nth-child(8) {
+        float: right !important;
+        margin-right: 20px;
+    }
+
+
+    //tablet view
+    @media only screen and (max-width: 900px) and (min-width: 500px) {
+        .contact-icon b {
+            display: none;
+        }
+
+        #table-headings {
+            text-align: center;
+            font-size: 10px;
+        }
+
+        .table-row td:nth-child(5),
+        .table-row td:nth-child(6),
+        .table-row td:nth-child(7) {
+            text-align: left;
+        }
+
+        .table-row {
+            font-size: 12px;
+        }
+
+    }
+
+    //mobile view
+    @media screen and (max-width: 590px) {
+
+        .table-row td:nth-child(4),
+        .table-row td:nth-child(5),
+        .table-row td:nth-child(6),
+        .table-row td:nth-child(7),
+        #table-headings th:nth-child(3),
+        #table-headings th:nth-child(4),
+        #table-headings th:nth-child(5),
+        #table-headings th:nth-child(6) {
+            display: none;
+        }
+
+        #table-headings th:nth-child(1) {
+            text-align: left;
+        }
+
+        #table-headings th:nth-child(2) {
+            margin-left: 70px;
+            display: block;
+        }
+
+        .table-row td:nth-child(3) {
+            text-align: right;
+        }
+
+        #table-headings {
+            text-align: center;
+            font-size: 10px;
+        }
+
+        .table-row {
+            font-size: 11px;
+        }
+    }
+
+
+    img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+
+    .contact-icon {
+        position: relative;
+
+        fa-icon {
+            color: #73cc88;
+            font-size: 15px;
+            // margin-left: -10px;
+            position: absolute;
+            margin-left: -32px;
+            margin-top: 24px;
+        }
+    }
+}
+
+
+
+fa-icon {
+    font-size: 23px;
+    color: #64adc3;
+
+    &:hover {
+        color: #186f8b;
+    }
+}
+
+.input-group {
+    fa-icon {
+        font-size: 15px;
+        color: #186f8b;
+        margin-right: 5px;
+        transition: transform 0.3s ease-in-out;
+        display: inline-block;
+    }
+
+    .add-contact-button {
+        background-color: #fff;
+        border: 1px solid #64adc354;
+        color: #186f8b;
+        font-weight: 700;
+        margin-left: 10px !important;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &:hover fa-icon {
+            transform: rotate(90deg);
+        }
+
+    }
+
+    input {
+        color: #186f8b;
+        font-weight: 600;
+        font-size: 14px;
+        border: 1px solid #64adc354;
+
+        &:focus {
+            color: #186f8b;
+        }
+
+        &::placeholder {
+            color: #64adc354;
+        }
+    }
+
+}
+
+.dropdown {
+    select {
+        width: 150px;
+        max-width: 150px;
+        overflow-x: hidden;
+    }
+}
+
+.dropdown-btn {
+    background-color: #fff;
+    border: 1px solid #64adc354;
+    color: #186f8b;
+    font-weight: 600;
+    opacity: 0.7;
+    padding: 7px 20px 7px 20px;
+    margin-left: 10px;
+
+    &:hover {
+        background-color: #fff;
+        color: #186f8b;
+        border: 1px solid #64adc354;
+        opacity: 1;
+    }
+}
+
+
+
+//Contact Add-Update Modal
+#phone-code {
+    padding: 10px;
+    font-size: 12px;
+    background: #fff;
+    color: rgba(53, 53, 53, 0.8431372549);
+    height: 43px;
+    border-right: none !important;
+    border-top: 1px solid #64adc354;
+    border-left: 1px solid #64adc354;
+    border-bottom: 1px solid #64adc354;
+    font-weight: 700;
+}
+
+#addContactModal {
+
+    button {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .modal-header {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .modal-body {
+        background-color: #f9f9f9;
+    }
+
+    .modal-title {
+        color: #64adc3;
+        font-weight: 600;
+        font-size: 17px;
+    }
+
+    .modal-body img {
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+
+    .modal-content label {
+        font-size: 15px;
+        font-weight: 650;
+        color: rgba(99, 99, 99, 0.644);
+    }
+
+    .modal-body input {
+        font-size: 14px;
+        color: #343434;
+        font-weight: 650;
+        border-radius: 3px;
+        padding: 10px;
+        margin-bottom: 14px;
+        border: 1px solid #4c80901d;
+    }
+
+    .modal-body select {
+        font-size: 14px;
+        color: #343434;
+        font-weight: 650;
+        border-radius: 3px;
+        padding: 10px;
+        margin-bottom: 14px;
+        border: 1px solid #4c80901d;
+
+    }
+
+    .modale-footer {
+        border-top: 1px solid #4c80901d;
+        padding-top: 9px;
+        padding-bottom: 9px;
+        background-color: #f9f9f9;
+        align-items: center;
+        padding: 15px;
+
+        .form-switch {
+            background-color: #fff;
+            border: 1px solid rgba(41, 251, 11, 0.33);
+            color: #186f8b;
+            font-weight: 700;
+            margin-right: 15px;
+            padding: 8px 25px 8px 60px;
+        }
+    }
+
+    //Form Switch in Modal Footer - add to favorites
+    .form-check-input:checked {
+        background-color: #73cc88;
+        border-color: #73cc88;
+    }
+
+    .form-check-input:focus {
+        border-color: #73cc88;
+        outline: 0;
+        box-shadow: none !important;
+    }
+
+    //buttons for adding phone + label
+    .add-phone-btn {
+        border: 1px solid rgba(100, 173, 195, 0.3294117647);
+        border-radius: 3px !important;
+        background-color: #fff;
+        padding: 7px 14px 7px 14px;
+        margin-left: 14px;
+        margin-bottom: 14px;
+
+        fa-icon {
+            font-size: 14px;
+        }
+    }
+
+    .add-phone {
+        color: #64adc3 !important;
+        margin-left: 15px;
+    }
+
+    //Buttons in Modal Footer
+    .modal-add-button {
+        background-color: #64adc3;
+        color: #fff;
+        font-weight: 700;
+        box-shadow: 0px 8px 15px rgba(38, 101, 104, 0.4);
+
+        &:hover {
+            background: linear-gradient(90deg, #0c6a88, transparent) #6abcd1;
+            color: #fff;
+            transition: background-color 0.7s;
+        }
+    }
+
+    .modal-cancel-button {
+        background-color: #fff;
+        border: 1px solid #64adc354;
+        color: #186f8b;
+        font-weight: 700;
+        margin-right: 15px;
+
+        &:hover {
+            background-color: #64adc3;
+            color: #fff;
+        }
+    }
+}
+
+
+
+//modal delete
+.modal-confirm {
+    color: #636363;
+    width: 400px;
+    margin: 30px auto;
+    width: 320px;
+}
+
+.modal-confirm .modal-content {
+    background-color: #fff9fa;
+    padding: 50px 0 50px 0;
+    border-radius: 15px;
+    border: none;
+    text-align: center;
+    font-size: 14px;
+}
+
+.modal-confirm .modal-header {
+    border-bottom: none;
+    position: relative;
+}
+
+.modal-confirm h4 {
+    text-align: center;
+    font-size: 26px;
+    margin: 30px 0 -10px;
+}
+
+.modal-confirm .close {
+    position: absolute;
+    top: -5px;
+    right: -2px;
+}
+
+.modal-confirm .modal-body {
+    color: rgb(133, 133, 133);
+    font-weight: 700;
+    padding-right: 40px;
+    padding-left: 40px;
+
+    b {
+        color: #ff2d4d;
+    }
+}
+
+.modal-confirm .modal-title {
+    color: #343434;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.modal-confirm .icon-box {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    border-radius: 50%;
+    z-index: 9;
+    text-align: center;
+    border: 3px solid #ff2d4d;
+}
+
+.modal-confirm .icon-box i {
+    color: #ff2d4d;
+    font-size: 82px;
+    display: inline-block;
+    margin-top: 13px;
+    // box-shadow: 0px 8px 15px rgba(255, 25, 0, 0.4);
+}
+
+fir .modal-confirm .btn-info {
+    background: #c1c1c1;
+}
+
+.modal-confirm .btn-info:hover,
+.modal-confirm .btn-info:focus {
+    background: #a8a8a8;
+}
+
+.modal-confirm .btn-delete {
+    background: #ff2d4d;
+    color: #fff;
+    font-weight: 600;
+    padding-left: 45px;
+    padding-right: 45px;
+    box-shadow: 0px 8px 15px rgba(236, 6, 6, 0.4);
+}
+
+.modal-confirm .btn-delete:hover,
+.modal-confirm .btn-delete:focus {
+    background: #ff2d4d;
+}
+
+.closer {
+    position: absolute;
+    top: 4%;
+    z-index: 3;
+    left: 90%;
+    font-size: 12px;
+    opacity: 1;
+}
+
+//responsive commons
+@media screen and (min-width: 980px) {
+    .large-scrn-padding-0 {
+        padding-left: 0 !important;
+    }
+
+    #mobile-only {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 580px) {
+    .float-left {
+        float: left;
+    }
+
+    .float-right {
+        float: right;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .float-left {
+        text-align: center;
+        padding-left: 60px;
+        padding-right: 40px;
+    }
+
+    .float-right {
+        margin-top: 20px;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .hide {
+        display: none;
+    }
+
+    #addContactModal .add-phone-btn {
+        margin-left: 0 !important;
+    }
+}
+
+@media only screen and (max-width: 590px) {
+    .mobile-margin {
+        margin-top: 20px;
+    }
+}
+
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #f3969a !important;
+}

@@ -77,6 +77,7 @@ export class ContactDashboardComponent implements OnInit {
     console.log("phones", this.phones.controls);
     this.phones.removeAt(i);
   }
+
   addPhones() {
     this.phones.push(this.formbuilder.control(''))
   }
@@ -125,12 +126,13 @@ export class ContactDashboardComponent implements OnInit {
   //logic for toggle and button contacts(original)-favorites(favorites)
   //show favorites function (favorites) 
   showFavorites() {
+    //filter the table for favorites
     this.contactData = this.original.filter((item: any) => item.favorite === true);
     this.toggle2 = true;
     this.toggle = false;
   }
   //show all contacts (original)
-  showContacts() {
+  showAll() {
     this.contactData = this.original;
     this.toggle = true;
     this.toggle2 = false;
@@ -152,15 +154,12 @@ export class ContactDashboardComponent implements OnInit {
     this.updateContact();
   }
 
-  //this was usefull while incorporating the logic for switch in modal but didn't use it in the end
-  // toggleFavorite() {
-  //   // this.favoriteCheceked = !this.favoriteCheceked;
-  //   console.log("favoriteCheceked", this.favoriteCheceked);
-  // }
 
   addContact = false;
-  //adding the contact function 
+  //adding the contact function for main button above table +contact
   clickAddContact() {
+    //clear the added form fields
+    this.phones.clear();
     //logic for solving the conflict between two modals one form
     this.addContact = true;
     //clear the picture on open (conflict with edit - would take the picture that was given in edit contact)
@@ -173,7 +172,7 @@ export class ContactDashboardComponent implements OnInit {
     this.showUpdate = false;
   }
 
-  //function made so the code is not repated
+  //function made so the code is not repated for storing data
   storeContactData() {
     //logic for conflict between one form - two modals
     if (this.addContact === true) {
@@ -189,20 +188,33 @@ export class ContactDashboardComponent implements OnInit {
     this.contactModelObj.countryCode2 = this.formValue.value.countryCode2;
     this.contactModelObj.phone = this.formValue.value.phone;
     this.contactModelObj.phone2 = this.formValue.value.phone2;
+    this.contactModelObj.additionalPhones = [{
+
+      countryCode: this.formValue.value.countryCode,
+      number: this.formValue.value.phone
+    }, {
+      countryCode: this.formValue.value.countryCode2,
+      number: this.formValue.value.phone2
+
+    }];
     this.contactModelObj.favorite = this.favoriteCheceked;
-    // this.contactModelObj.additionalPhones = this.additionalPhones;
+    // this.contactModelObj.additionalPhones = this.phones;
+    // console.log(this.contactModelObj.additionalPhones);
+
   }
 
+  //function which will reset form, and refresh the 
   clearRefresh() {
     //cancel button by id
     let cancel = document.getElementById('cancel')
     cancel?.click();
     //clear everything after adding
     this.formValue.reset();
+    //refresh
     this.getAllContacts();
   }
 
-
+  //upon clicking the add contact button within the modal in adding contact view
   postContactDetails() {
     //take data from the form
     this.storeContactData();
@@ -227,13 +239,14 @@ export class ContactDashboardComponent implements OnInit {
 
   //function fires before delete modal opens
   beforeDeleteConfirmation(row: any) {
+    //for passing the name in delete confirmation modal
     this.contactName = row.name;
     this.rowId = row.id;
-    //also this just closes the popover otherwise it stays open = not necessary
+    //also this just closes the popover otherwise it stays open
     this.getAllContacts();
   }
 
-  //delete contact by id
+  //delete contact by id - button delete in popover
   deleteContact() {
     this.api.deleteContact(this.rowId)
       .subscribe(res => {
@@ -244,26 +257,15 @@ export class ContactDashboardComponent implements OnInit {
       })
   }
 
-  //on edit fetch row value and fill the form
-  onEdit(row: any) {
-    // console.log("this.phones.controls", this.phones.controls);
-    //unfinished logic for storing dynamically added fields without it it shows one on modal open 
-    // for(let i =0; i< this.phones.controls.length; i++){
-    //   this.phones.removeAt(i);
-    // }
-    //so i just clear so it is not nested when opened
+  //set values for form, in respect for editing or viewing chage the boolean of buttons so they are shown/hidden
+  setValues(row: any, showUpdate: boolean, showDelete: boolean) {
     this.phones.clear();
-    //show edit hide add button on modal
     this.addContact = false;
     this.showAdd = false;
-    this.showUpdate = true;
-    this.showDelete = true;
-    //passing the object to the contact id
+    this.showUpdate = showUpdate;
+    this.showDelete = showDelete;
     this.contactModelObj.id = row.id;
-    //set values of the form from the contact db
-    // this.formValue.controls['img'].setValue(row.img);
     this.url = row.img;
-    // this.src = row.img;
     this.formValue.controls['name'].setValue(row.name);
     this.formValue.controls['position'].setValue(row.position);
     this.formValue.controls['city'].setValue(row.city);
@@ -271,39 +273,21 @@ export class ContactDashboardComponent implements OnInit {
     this.formValue.controls['countryCode'].setValue(row.countryCode);
     this.formValue.controls['countryCode2'].setValue(row.countryCode2);
     this.formValue.controls['phone'].setValue(row.phone);
-    this.formValue.controls['phone2'].setValue(row.phone2);
+    this.formValue.controls['phone2'].setValue(row.additionalPhones[1].number);
     this.favoriteCheceked = row.favorite;
-    // console.log("working");
-    // console.log(row.favorite);
-
-    //added this so the popover closes even tho not necessary
     this.getAllContacts();
   }
 
-  //on view similiar to onEdit but hide buttons 
+  //on clicking edit button in popover
+  onEdit(row: any) {
+    this.setValues(row, true, true);
+  }
+  //mobile view clicking view button in popover
   onView(row: any) {
-    //unfinished logic for storing dynamically added fields without it it shows one on modal open 
-    this.phones.clear();
-    this.addContact = false;
-    this.showAdd = false;
-    this.showUpdate = false;
-    this.showDelete = false;
-    this.contactModelObj.id = row.id;
-    this.url = row.img;
-    this.formValue.controls['name'].setValue(row.name);
-    this.formValue.controls['position'].setValue(row.position);
-    this.formValue.controls['city'].setValue(row.city);
-    this.formValue.controls['email'].setValue(row.email);
-    this.formValue.controls['phone'].setValue(row.phone);
-    this.formValue.controls['phone2'].setValue(row.phone2);
-    this.favoriteCheceked = row.favorite;
-    // console.log("working");
-
-    //added this so the popover closes even tho not necessary
-    this.getAllContacts();
+    this.setValues(row, false, false);
   }
 
-  //updateContact 
+  //updateContact upon clicking save in modal window from edit view
   updateContact() {
     this.storeContactData();
     //data+id of the contact being updated
@@ -315,7 +299,7 @@ export class ContactDashboardComponent implements OnInit {
       })
   }
 
-  //my solution was deep nesting which I know is not the best principle looking forward to learn more
+  //country phone code number in modal window
   countryCode1: any;
   countryCode2: any;
   selectedCode(option: any, value: any) {
@@ -325,7 +309,8 @@ export class ContactDashboardComponent implements OnInit {
       this.countryCode2 = value;
     }
   }
-  //my solution was deep nesting which I know is not the best principle looking forward to learn more
+
+  //dropdown select position in modal window 
   position1: any;
   selectedPosition(option: any, value: any) {
     if (option === "position1") {

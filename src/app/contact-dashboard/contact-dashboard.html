@@ -3,7 +3,7 @@
         <div class="col-lg-4 col-md-6 col-sm-12">
             <ul class="nav nav-pills ">
                 <li class="nav-item">
-                    <a (click)="showContacts()" [ngClass]="{'active': toggle}" class="nav-link rounded-pill pillContact"
+                    <a (click)="showAll()" [ngClass]="{'active': toggle}" class="nav-link rounded-pill pillContact"
                         aria-current="page" href="#">Contacts</a>
                 </li>
                 <li class="nav-item">
@@ -72,11 +72,11 @@
                     <fa-icon *ngIf="sortDirection === 'ascending'" [icon]="['fas', 'sort-asc']"></fa-icon>
                     <fa-icon *ngIf="sortDirection === 'descending'" [icon]="['fas', 'sort-desc']"></fa-icon>
                 </th>
-                <th class="col-lg-1 col-md-1" (click)="sortData('phone2')">Phone 2
+                <th class="col-lg-1 col-md-2" (click)="sortData('phone2')">Phone 2
                     <fa-icon *ngIf="sortDirection === 'ascending'" [icon]="['fas', 'sort-asc']"></fa-icon>
                     <fa-icon *ngIf="sortDirection === 'descending'" [icon]="['fas', 'sort-desc']"></fa-icon>
                 </th>
-                <th class="col-lg-1 col-md-1"></th>
+                <th class="col-lg-1"></th>
             </tr>
         </thead>
         <tbody>
@@ -93,7 +93,7 @@
                 <td class="col-lg-1 col-md-1">{{ row.city ? row.city : '---' }}</td>
                 <td class="col-lg-2 col-md-3">{{ row.email ? row.email : '---'}}</td>
                 <td class="col-lg-2 col-md-3">{{row.countryCode}} {{ row.phone ? row.phone : '---' }}</td>
-                <td class="col-lg-1 col-md-1">{{row.countryCode2}} {{ row.phone2 ? row.phone2 : '---'}}</td>
+                <td class="col-lg-1 col-md-1"> ({{ row.additionalPhones ? row.additionalPhones.length : '---'}})</td>
                 <td class="col-lg-1 col-md-1">
                     <button type="button" class="btn btn-sm" placement="bottom" [mdbPopover]="template" trigger="click">
                         <fa-icon [icon]="['fas', 'ellipsis-vertical']"></fa-icon>
@@ -189,7 +189,7 @@
                                         <option value="+385">+385</option>
                                     </select>
                                     <input type="text" formControlName="phone2" class="form-control" id="contact-phone2"
-                                        pattern="[0-9]{1} [0-9]{3} [0-9]{3} [0-9]{3} [0-9]{1}" placeholder="Phone#2">
+                                        placeholder="Phone#2">
                                 </div>
                             </div>
                             <div formArrayName="phones">
@@ -200,8 +200,8 @@
                                             <option value="+49">+49</option>
                                             <option value="+385">+385</option>
                                         </select>
-                                        <input [formControlName]="i" type="text" class="form-control"
-                                            id="contact-phone3" placeholder="New Phone Number">
+                                        <input type="text" class="form-control" id="contact-phone3"
+                                            placeholder="New Phone Number">
                                         <button class="btn rounded-0 add-phone-btn" (click)="removePhones(i)"><fa-icon
                                                 [icon]="['fas', 'minus']"></fa-icon></button>
                                     </div>
